@@ -5,7 +5,6 @@ import { ArrowRight, Loader } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import AuthShell from "@/components/auth/auth-shell";
-import GoogleOauthButton from "@/components/auth/google-oauth-button";
 import PasswordInput from "@/components/auth/password-input";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -39,10 +38,6 @@ const SignUp = () => {
 
   return (
     <AuthShell eyebrow="Start building" title="Create your TeamNova account" description="Set up your workspace in under a minute.">
-      <GoogleOauthButton label="Continue" />
-      <div className="my-7 flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-        <span className="h-px flex-1 bg-[#E2E8F0]" />or use email<span className="h-px flex-1 bg-[#E2E8F0]" />
-      </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <FormField control={form.control} name="name" render={({ field }) => (

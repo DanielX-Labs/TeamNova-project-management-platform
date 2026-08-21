@@ -25,7 +25,6 @@
     "express-session": "latest",
     "mongoose": "^9.9.3",
     "passport": "^0.7.0",
-    "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "uuid": "^14.0.2",
     "zod": "^4.4.3"
@@ -39,7 +38,6 @@
     "@types/mongoose": "^5.11.97",
     "@types/node": "^26.2.0",
     "@types/passport": "^1.0.17",
-    "@types/passport-google-oauth20": "^2.0.17",
     "@types/passport-local": "^1.0.38",
     "tsx": "latest",
     "typescript": "^7.0.2"

@@ -3,7 +3,7 @@ services:
     name: teamnova-api
     runtime: node
     rootDir: backend
-    buildCommand: npm ci && npm run build
+    buildCommand: npm ci --include=dev && npm run build
     startCommand: node dist/index.js
     healthCheckPath: /health
     autoDeploy: true
@@ -20,13 +20,5 @@ services:
         value: 1d
       - key: MONGO_URI
         sync: false
-      - key: GOOGLE_CLIENT_ID
-        sync: false
-      - key: GOOGLE_CLIENT_SECRET
-        sync: false
-      - key: GOOGLE_CALLBACK_URL
-        sync: false
       - key: FRONTEND_ORIGIN
-        sync: false
-      - key: FRONTEND_GOOGLE_CALLBACK_URL
         sync: false
