@@ -9,7 +9,7 @@ const appConfig = () => ({
   SESSION_SECRET: getEnv("SESSION_SECRET"),
   SESSION_EXPIRES_IN: getEnv("SESSION_EXPIRES_IN"),
 
-  FRONTEND_ORIGIN: getEnv("FRONTEND_ORIGIN", "localhost"),
+  FRONTEND_ORIGIN: getEnv("FRONTEND_ORIGIN", "http://localhost:3000"),
 });
 
 export const config = appConfig();

@@ -455,7 +455,7 @@ The frontend and backend deploy independently. The repository includes [`render.
 2. Render reads `render.yaml` and creates `teamnova-api` with `backend` as its root directory.
 3. Supply every environment variable marked `sync: false`.
 4. Do not set `PORT`; Render provides it automatically.
-5. Set `FRONTEND_ORIGIN` to the exact production Vercel origin without a trailing slash.
+5. Set `FRONTEND_ORIGIN` to the production Vercel URL. A trailing slash is accepted. For multiple frontends, use a comma-separated list of full URLs.
 6. Deploy and confirm `https://YOUR_RENDER_SERVICE.onrender.com/health` returns a connected status.
 
 ### Deploy the client to Vercel

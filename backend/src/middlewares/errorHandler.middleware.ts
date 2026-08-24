@@ -44,6 +44,13 @@ export const errorHandler: ErrorRequestHandler = (
     });
   }
 
+  if (errorName === "CorsError") {
+    console.warn(`CORS rejected ${req.method} ${req.path}: ${error.message}`);
+    return res.status(HTTPSTATUS.FORBIDDEN).json({
+      message: "Request origin is not allowed",
+    });
+  }
+
   if (error instanceof SyntaxError) {
     return res.status(HTTPSTATUS.BAD_REQUEST).json({
       message: "Invalid JSON format. Please check your request body.",

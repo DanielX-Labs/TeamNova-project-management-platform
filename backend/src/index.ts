@@ -24,8 +24,19 @@ import { logger } from "./utils/logger";
 const app = express();
 const BASE_PATH = config.BASE_PATH;
 const isProduction = config.NODE_ENV === "production";
-const allowedOrigins = config.FRONTEND_ORIGIN.split(",").map((origin) =>
-  origin.trim()
+const normalizeOrigin = (value: string) => {
+  try {
+    return new URL(value.trim()).origin;
+  } catch {
+    throw new Error(
+      `Invalid FRONTEND_ORIGIN value: "${value.trim()}". Use a full URL such as https://app.example.com.`
+    );
+  }
+};
+const allowedOrigins = new Set(
+  config.FRONTEND_ORIGIN.split(",")
+    .filter((origin) => origin.trim())
+    .map(normalizeOrigin)
 );
 const durationUnits: Record<string, number> = {
   s: 1_000,
@@ -61,8 +72,13 @@ app.use(express.urlencoded({ extended: true, limit: "2mb" }));
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
-      return callback(new Error("Origin is not allowed by CORS"));
+      if (!origin || allowedOrigins.has(normalizeOrigin(origin))) {
+        return callback(null, true);
+      }
+
+      const error = new Error(`Origin ${origin} is not allowed by CORS`);
+      error.name = "CorsError";
+      return callback(error);
     },
     credentials: true,
   })
